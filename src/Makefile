@@ -27,13 +27,14 @@ PWD       := $(shell pwd)
 modules:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) LDDINC=$(PWD)/../include modules
 	mv *.ko ../modules
+	mv *.o ../object
 
 endif
 
 
 
 clean:
-	rm -rf *.o *~ core .depend .*.cmd ../modules/*.ko *.mod.c .tmp_versions
+	rm -rf ../object/* *.o *~ core .depend .*.cmd ../modules/* *.ko *.mod.c .tmp_versions *.order *.markers *.symvers
 
 depend .depend dep:
 	$(CC) $(EXTRA_CFLAGS) -M *.c > .depend
