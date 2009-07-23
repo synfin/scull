@@ -28,7 +28,7 @@
 #include <linux/tty.h>
 #include <asm/atomic.h>
 #include <linux/list.h>
-#include <asm/current.h>
+#include <linux/sched.h>
 
 #include "scull.h"        /* local definitions */
 
@@ -104,9 +104,10 @@ static int scull_u_open(struct inode *inode, struct file *filp)
 
 	spin_lock(&scull_u_lock);
 	if (scull_u_count && 
+			
 			(scull_u_owner !=
 				 current->uid) &&  /* allow user */
-			(scull_u_owner != current->euid) && /* allow whoever did su */
+			(scull_u_owner != current->euid) && /* allow whoever did su */ 
 			!capable(CAP_DAC_OVERRIDE)) { /* still allow root */
 		spin_unlock(&scull_u_lock);
 		return -EBUSY;   /* -EPERM would confuse the user */

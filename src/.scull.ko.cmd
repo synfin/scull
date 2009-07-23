@@ -1,0 +1,1 @@
+cmd_/export/dsklopp/devel/kern/scull/src/scull.ko := ld -r -m elf_i386  --build-id -o /export/dsklopp/devel/kern/scull/src/scull.ko /export/dsklopp/devel/kern/scull/src/scull.o /export/dsklopp/devel/kern/scull/src/scull.mod.o
